@@ -266,7 +266,7 @@
 .gmi_light_-_footer_social_icons {
 }
 .gmi_-_information-box_textbox {
-  font-family:"Source Code Pro", sans-serif;
+  font-family:"SourceCodePro-Bold", "Source Code Pro Bold", "Source Code Pro", sans-serif;
   font-weight:700;
   font-style:normal;
   font-size:16px;
@@ -276,7 +276,7 @@
   line-height:22px;
 }
 .gmi_-_information-box_text {
-  font-family:"Source Code Pro", sans-serif;
+  font-family:"SourceCodePro-Regular", "Source Code Pro", sans-serif;
   font-weight:400;
   font-style:normal;
   font-size:18px;

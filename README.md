@@ -11,6 +11,7 @@ reference for the implementation in Hugo** (or any other CMS).
 | `portals_darkmode_hetzner_<lang>.html`  | Dark-theme variant per language |
 | `portals_lightmode_hetzner_<lang>.html` | Light-theme variant per language |
 | `content-translations.csv`              | All translatable strings as a flat CSV (drop straight into Hugo i18n) |
+| `assets/`                               | Cleanly-named WebP image assets |
 | `data/` `files/` `images/` `resources/` | Axure assets (shared by all variants) |
 
 ## Languages
@@ -28,56 +29,67 @@ what each translated string looks like in the original Axure layout.
 
 ## How to open the HTMLs
 
-Just **double-click any HTML file**. They include a small JS shim that prevents
-the Axure runtime from falling back to its (empty) iPhone view on browser
-windows narrower than 1680px (which would otherwise render as a black page on
-macOS Sequoia and similar setups).
+**Double-click any HTML file.** The bundled JS shim forces Axure to use its
+default 1680px view, so the page renders even when the browser window is
+narrower (without it, Axure picks an empty iPhone view and shows a black
+screen on macOS Sequoia).
 
-## How to extract strings for Hugo i18n
+## Image assets
 
-Open `content-translations.csv`. Each row maps to one translatable string:
+The visible content images (persona stockphotos, Desktop App mockup,
+integration logos) have been swapped to cleanly-named WebPs in `assets/`.
+Naming convention:
+
+```
+{lang}_getmyinvoices_{section}_{name}.webp
+
+examples:
+  en_getmyinvoices_industries_it-and-software.webp
+  de_getmyinvoices_desktop-app_dark.webp
+  en_getmyinvoices_integrations_datev.webp
+```
+
+Decorative Axure-generated SVGs (arrows, divider lines, step number circles)
+are kept under `images/portals_*_hetzner/u123.svg` since they have no
+production-asset equivalent.
+
+## Brand-blue highlighting in headings
+
+The page headings use the GetMyInvoices brand-blue (`#44A4DC`) on specific
+keywords. The colouring rules (same across all languages, applied
+semantically):
+
+| Heading | Blue keyword(s) |
+|---|---|
+| Hero H1 | "Hetzner invoices" (or equivalent in language) |
+| Social proof | "20,000 companies" (or equivalent) |
+| What GMI does for Hetzner | GetMyInvoices, Hetzner |
+| About Hetzner | Hetzner |
+| Who uses GMI with Hetzner | Hetzner |
+| How does it work? | "work?" portion |
+| Proven performance by GMI | GetMyInvoices |
+| See how GMI works with Hetzner | Hetzner |
+| Desktop App: ... | "Desktop App" portion |
+| Frequently combined with | "combined with" portion |
+| FAQ about Hetzner and GMI | Hetzner, GetMyInvoices |
+| Ready to automate... | "Hetzner invoices?" (dark text on the blue CTA banner) |
+
+## Hugo i18n workflow
+
+Open `content-translations.csv` — each row is one translatable string:
 
 ```csv
 section,element,occurrence,en,de,fr,es,nl
-Hero,H1 (headline),1,Download your Hetzner invoices automatically,Hetzner Rechnungen automatisch herunterladen,...
-Hero,Subline,1,With GetMyInvoices you download...,Mit GetMyInvoices laden Sie...,...
+Hero,H1 (headline),1,Download your Hetzner invoices automatically,Hetzner-Rechnungen automatisch herunterladen,...
+Hero,Subline,1,With GetMyInvoices you download...,Mit GetMyInvoices holen Sie sich...,...
 ```
 
-Group by `section` to build per-section i18n keys, e.g.
+Group by `section` to build per-section i18n keys.
 
-```yaml
-# data/i18n/en.yaml
-hero:
-  h1: "Download your Hetzner invoices automatically"
-  subline: "With GetMyInvoices you download…"
-  cta: "Start for free"
-```
+## Regenerating
 
-## What is NOT translated (intentional)
-
-The Axure export contains a handful of strings that are **not in the
-translation Excel** and therefore remain in their original form:
-
-- Sticky-note text inside the Axure design (yellow notes for designers/devs).
-- The page navigation menu placeholders ("Menue").
-- The footer placeholder text ("Lorem ipsum…", "Placeholder").
-
-These are not part of the portal page content — the live Hugo footer + nav
-should be reused as-is.
-
-## Image alt texts
-
-The Excel includes a separate sheet, `Image alt texts`, with per-image alt
-text in all five languages. They are not embedded in this HTML output (the
-HTMLs use the original Axure-generated SVG-IDs as alt). Use the sheet directly
-when porting to Hugo.
-
-## Regenerating these HTMLs
-
-If the Excel is updated, regenerate everything by running:
+If Excel or the Axure HTML is updated, regenerate everything with:
 
 ```bash
 python3 ../translate_hetzner.py
 ```
-
-(Path is relative to this folder; the script lives one level up.)
