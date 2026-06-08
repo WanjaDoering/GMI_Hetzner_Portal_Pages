@@ -68,7 +68,6 @@ semantically):
 | Who uses GMI with Hetzner | Hetzner |
 | How does it work? | "work?" portion |
 | Proven performance by GMI | GetMyInvoices |
-| See how GMI works with Hetzner | Hetzner |
 | Desktop App: ... | "Desktop App" portion |
 | Frequently combined with | "combined with" portion |
 | FAQ about Hetzner and GMI | Hetzner, GetMyInvoices |

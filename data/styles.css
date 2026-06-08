@@ -249,16 +249,26 @@
   font-weight:700;
   font-style:normal;
   font-size:14px;
-  color:#FFFFFF;
   text-align:left;
   line-height:24px;
   text-transform:uppercase;
 }
 .gmi_-_footer_paragraph {
+  font-family:"Rubik-Regular", "Rubik", sans-serif;
+  font-weight:400;
+  font-style:normal;
   font-size:14px;
-  color:#FFFFFF;
   text-align:left;
-  line-height:24px;
+  line-height:22px;
+  text-transform:none;
+}
+.gmi_-_footer_menue {
+  font-family:"Rubik-Regular", "Rubik", sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:14px;
+  text-align:left;
+  line-height:19px;
   text-transform:none;
 }
 .gmi_dark_-_footer_social_icons {
@@ -266,7 +276,7 @@
 .gmi_light_-_footer_social_icons {
 }
 .gmi_-_information-box_textbox {
-  font-family:"SourceCodePro-Bold", "Source Code Pro Bold", "Source Code Pro", sans-serif;
+  font-family:"Source Code Pro", sans-serif;
   font-weight:700;
   font-style:normal;
   font-size:16px;
@@ -276,7 +286,7 @@
   line-height:22px;
 }
 .gmi_-_information-box_text {
-  font-family:"SourceCodePro-Regular", "Source Code Pro", sans-serif;
+  font-family:"Source Code Pro", sans-serif;
   font-weight:400;
   font-style:normal;
   font-size:18px;
